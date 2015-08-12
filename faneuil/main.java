@@ -25,29 +25,29 @@ class FaneuilApp {
         
         Random rg = new Random();
     	
+		for (int i = 0; i < NUM_IMMIGRANTS_TO_CREATE; i++) {
+			Immigrant immigrant = new Immigrant(i, rg.nextInt(100), rg.nextInt(100), rg.nextInt(100), rg.nextInt(100));
+			immigrantThreads[i] = new Thread(immigrant);
+			immigrant.setCourt(court);
+		}
 		for (int i = 0; i < NUM_JUDGES_TO_CREATE; i++) {
 			Judge judge = new Judge(i, rg.nextInt(100), rg.nextInt(100),rg.nextInt(100));
 			judgeThreads[i] = new Thread(judge);
 			judge.setCourt(court);
 		}
 //    		judgeEnter(judge);
-		for (int i = 0; i < NUM_IMMIGRANTS_TO_CREATE; i++) {
-			Immigrant immigrant = new Immigrant(i, rg.nextInt(100), rg.nextInt(100), rg.nextInt(100), rg.nextInt(100));
-			immigrantThreads[i] = new Thread(immigrant);
-			immigrant.setCourt(court);
-		}
-		for (int i = 0; i < NUM_SPECTATORS_TO_CREATE; i++) {
-			Spectator spec = new Spectator(i, rg.nextInt(100), rg.nextInt(100), rg.nextInt(100));
-			spectatorThreads[i] = new Thread(spec);
-			spec.setCourt(court);
-		}
+//		for (int i = 0; i < NUM_SPECTATORS_TO_CREATE; i++) {
+//			Spectator spec = new Spectator(i, rg.nextInt(100), rg.nextInt(100), rg.nextInt(100));
+//			spectatorThreads[i] = new Thread(spec);
+//			spec.setCourt(court);
+//		}
 //    		judgeLeave(judge);
 		for (int i = 0; i < NUM_JUDGES_TO_CREATE; i++) 
 			judgeThreads[i].start();
 		for (int i = 0; i < NUM_IMMIGRANTS_TO_CREATE; i++) 
 			immigrantThreads[i].start();
-		for (int i = 0; i < NUM_SPECTATORS_TO_CREATE; i++) 
-			spectatorThreads[i].start();
+//		for (int i = 0; i < NUM_SPECTATORS_TO_CREATE; i++) 
+//			spectatorThreads[i].start();
     }
 }
 
